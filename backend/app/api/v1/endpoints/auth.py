@@ -2,11 +2,12 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from pydantic import BaseModel, EmailStr
-from app.db.session import get_db
+from app.db.database import get_db
 from app.models import User
 from app.core.security import hash_password, verify_password, create_access_token, create_refresh_token, decode_token
+from app.deps import get_current_user
 
-router = APIRouter(prefix="/auth", tags=["auth"])
+router = APIRouter()
 
 
 # ── Schemas ───────────────────────────────────────────────────────────────────
@@ -76,3 +77,6 @@ async def refresh(body: RefreshIn):
         access_token=create_access_token(user_id),
         refresh_token=create_refresh_token(user_id),
     )
+@router.get("/me")
+async def me(current_user: User = Depends(get_current_user)):
+    return {"id": current_user.id, "email": current_user.email}

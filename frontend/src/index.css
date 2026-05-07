@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-forge-bg text-forge-text antialiased;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3a4055 transparent;
+  }
+  *::-webkit-scrollbar { width: 4px; height: 4px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb { background: #3a4055; border-radius: 2px; }
+}
+
+@layer components {
+  .stat-card {
+    @apply bg-forge-surface border border-forge-border rounded-xl p-5 relative overflow-hidden;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono font-medium;
+  }
+  .pill-green  { @apply pill bg-forge-green/10  text-forge-green; }
+  .pill-red    { @apply pill bg-forge-red/10    text-forge-red; }
+  .pill-blue   { @apply pill bg-forge-accent/10 text-forge-accent; }
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-forge-subtle
+           transition-all duration-150 hover:text-forge-text hover:bg-forge-panel
+           relative;
+  }
+  .nav-link.active {
+    @apply text-forge-accent bg-forge-accent/10 font-medium;
+  }
+  .nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20%; height: 60%; width: 2px;
+    background: #4f8ef7;
+    border-radius: 0 2px 2px 0;
+  }
+  .table-row {
+    @apply border-b border-forge-border/50 hover:bg-forge-panel/50 transition-colors;
+  }
+  .badge-long  { @apply pill bg-forge-green/10 text-forge-green; }
+  .badge-short { @apply pill bg-forge-red/10   text-forge-red; }
+}
