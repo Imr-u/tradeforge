@@ -17,7 +17,7 @@ pydantic==2.7.1
 pydantic-settings==2.2.1
 
 # CSV parsing
-pandas==2.2.2
+pandas==2.2.3
 
 # Email
 sendgrid==6.11.0
